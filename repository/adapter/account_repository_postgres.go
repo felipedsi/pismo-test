@@ -2,6 +2,7 @@ package adapter
 
 import (
 	"database/sql"
+	"log"
 
 	"github.com/felipedsi/pismo-test/model"
 )
@@ -22,6 +23,8 @@ func (a *AccountRepositoryPostgres) CreateAccount(account model.Account) (*model
 	err := a.db.QueryRow(query, account.DocumentNumber).Scan(&account.AccountId)
 
 	if err != nil {
+		log.Printf("AccountRepositoryPostgres#CreateAccount: Database query (%s) failed: %s", query, err)
+
 		return nil, err
 	}
 
@@ -38,6 +41,8 @@ func (a *AccountRepositoryPostgres) FindAccount(accountId uint64) (*model.Accoun
 	err := result.Scan(&account.AccountId, &account.DocumentNumber)
 
 	if err != nil {
+		log.Printf("AccountRepositoryPostgres#FindAccount: Database query (%s) failed: %s", query, err)
+
 		return nil, err
 	}
 

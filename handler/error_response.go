@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/go-chi/render"
@@ -20,6 +21,8 @@ func (e *ErrorResponse) Render(w http.ResponseWriter, r *http.Request) error {
 }
 
 func errorInvalidRequest(err error, errorText string) render.Renderer {
+	log.Printf("Invalid request error: %s, %s", err, errorText)
+
 	return &ErrorResponse{
 		Err:            err,
 		HTTPStatusCode: 400,
@@ -29,6 +32,8 @@ func errorInvalidRequest(err error, errorText string) render.Renderer {
 }
 
 func errorNotFound(err error, errorText string) render.Renderer {
+	log.Printf("Not found error: %s, %s", err, errorText)
+
 	return &ErrorResponse{
 		Err:            err,
 		HTTPStatusCode: 404,

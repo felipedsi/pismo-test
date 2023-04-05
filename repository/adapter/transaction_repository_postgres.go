@@ -2,6 +2,7 @@ package adapter
 
 import (
 	"database/sql"
+	"log"
 
 	"github.com/felipedsi/pismo-test/model"
 )
@@ -26,6 +27,8 @@ func (t *TransactionRepositoryPostgres) CreateTransaction(transaction model.Tran
 		transaction.Amount).Scan(&transaction.TransactionId)
 
 	if err != nil {
+		log.Printf("TransactionRepositoryPostgres#CreateTransaction: Database query (%s) failed: %s", query, err)
+
 		return nil, err
 	}
 
