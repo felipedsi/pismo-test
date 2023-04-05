@@ -24,7 +24,12 @@ docker-compose up
 The application will be acessible through `http://localhost:3000` endpoint.
 
 ### Running without docker
-Just run the start script from the root folder:
+First, you need to have a postgres instance running and set the `POSTGRESQL_URL` environment variable with the connection info:
+```bash
+export POSTGRESQL_URL=postgres://<username>:<password>@<host>:<port>/<databaseName>
+```
+
+Then, just run the start script from the root folder:
 ```bash
 ./script/start
 ```
@@ -38,6 +43,14 @@ You can run the tests with docker by running:
 Otherwise, you can just use the regular go command to run them:
 ```bash
 go test ./...
+```
+
+### Migrations
+This project uses the [golang-migration](https://github.com/golang-migrate/migrate) tool to track changes to the database schema.
+
+To create a new migration, just run the following command and update the SQL up and down files accordingly:
+```bash
+migrate create -ext sql -dir db/migrations -seq <migration_name>
 ```
 
 ### Acknowledgments
