@@ -88,16 +88,6 @@ func TestValidateOperationTypeAmount(t *testing.T) {
 			-100.0,
 			false,
 		},
-		{
-			5,
-			-100.0,
-			false,
-		},
-		{
-			0,
-			-100.0,
-			false,
-		},
 	}
 
 	for _, scenario := range scenarios {

@@ -25,8 +25,6 @@ func ValidateOperationTypeAmount(operationTypeId uint32, amount float32) bool {
 		if amount <= 0 {
 			return false
 		}
-	default:
-		return false
 	}
 
 	return true
