@@ -1,7 +1,7 @@
 # Pismo Test
 This application runs an API to handle financial transactions.
 
-## Requirements
+### Requirements
 - [Go](https://go.dev/)
 
 Or you can just use Docker:
@@ -16,14 +16,14 @@ First, you need to build the Docker container:
 
 This command is going to create an image called `pismo-test:dev` which can be used to run the tests and the application itself.
 
-Then, you can just run the docker-compose:
+Then, you can just run using the docker-compose:
 ```bash
 docker-compose up
 ```
 
 The application will be acessible through `http://localhost:3000` endpoint.
 
-## Running without docker
+### Running without docker
 Just run the start script from the root folder:
 ```bash
 ./script/start
