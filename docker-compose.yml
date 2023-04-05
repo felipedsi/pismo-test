@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  web:
+    image: pismo-test:dev
+    ports:
+    - "3000:3000"
+    command: "./script/start"
+    links:
+    - db
+    environment:
+    - POSTGRESQL_URL=postgres://pismo:pismo@db:5432/pismo_dev?sslmode=disable
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:15.2-alpine
+    environment:
+    - POSTGRES_DB=pismo_dev
+    - POSTGRES_USER=pismo
+    - POSTGRES_PASSWORD=pismo
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pismo -d pismo_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
